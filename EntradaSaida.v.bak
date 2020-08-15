@@ -1,0 +1,58 @@
+module IOModule(data1, data2, IOWrite, switch,
+			unidade, dezena, centena, unidadeMilhar,dezenaMilhar, 
+			centenaMilhar, milhao, bilhao, PCOut);
+		
+	input [31:0] data1, switch, PCOut;  //data1 = ALUOut  switch = chaves FPGA PCOut = endereco instrucao atual
+	
+	input IOWrite;
+
+	wire [3:0] bcdUnidade, bcdDezena, bcdCentena, bcdUnidadeMilhar,
+				bcdDezenaMilhar, bcdCentenaMilhar, bcdMilhao, bcdBilhao, bcdPCUnidade, bcdPCDezena;
+	
+	output [6:0] unidade, dezena, centena, unidadeMilhar, dezenaMilhar,
+				centenaMilhar, milhao, bilhao;
+					
+	output reg [31:0] data2;
+	
+	BCD BCD1(
+	.binary(data1),
+	.ones(bcdUnidade),
+	.tens(bcdDezena),
+	.hundreds(bcdCentena),
+	.thousands(bcdUnidadeMilhar),
+	.millions(bcdDezenaMilhar),
+	.billions(bcdCentenaMilhar),
+	.IOWrite(IOWrite)
+  );
+	
+	BCD BCD2(
+	.binary(PCOut),
+	.ones(bcdPCUnidade),
+	.tens(bcdPCDezena),
+	.IOWrite(1)
+	);
+				
+	sevenSegDisplay displayA(bcdUnidade,unidade);
+  
+	sevenSegDisplay displayB(bcdDezena, dezena);
+  
+	sevenSegDisplay displayC(bcdCentena, centena);
+  
+	sevenSegDisplay displayD(bcdUnidadeMilhar, unidadeMilhar);
+  
+	sevenSegDisplay displayE(bcdDezenaMilhar, dezenaMilhar);
+  
+	sevenSegDisplay displayF(bcdCentenaMilhar, centenaMilhar);
+  
+	sevenSegDisplay displayG(bcdPCUnidade, milhao);
+  
+	sevenSegDisplay displayH(bcdPCDezena, bilhao);
+	
+	always @ ( * ) begin
+		
+		if(IOWrite == 0)
+			data2 <= switch;
+			
+	end
+		
+endmodule

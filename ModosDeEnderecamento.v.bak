@@ -1,0 +1,36 @@
+/*Modos de Endereçamento do Processador*/
+
+module ModosDeEnderecamento (address, readReg1, readReg2, writeReg, regAddressCtrl);
+
+	input [14:0] address;
+	input [1:0] regAddressCtrl;
+	
+	output reg [4:0] readReg1, readReg2, writeReg;
+	
+	always @ (*) begin
+		case(regAddressCtrl)
+			2'b00:
+				begin
+					writeReg = address[14:10];
+					readReg1 = address[9:5];
+					readReg2 = address[4:0];
+				end
+			
+			2'b01:
+				begin
+					readReg1 = address[14:10];
+					readReg2 = address[9:5];
+				end
+			
+			2'b10:
+				begin		
+					readReg2 = address[14:10];
+				end	
+			2'b11:
+				begin
+					writeReg = address[14:10];
+					readReg2 = address[9:5];
+				end			
+		endcase
+	end
+endmodule

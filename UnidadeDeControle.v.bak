@@ -1,0 +1,456 @@
+module ControlUnit (opCode, ALUOp, ALUSrc, BranchCtrl, hltFlag, IOWrite, jalFlag,
+							jrFlag, MemRead, MemtoReg, MuxWriteDataReg, nopFlag,
+							RegWrite, regAddressCtrl, signExtendCtrl);
+
+	input [4:0] opCode;
+
+	output reg [3:0] ALUOp;
+	output reg [1:0] signExtendCtrl, BranchCtrl, regAddressCtrl;
+	output reg ALUSrc, hltFlag, IOWrite, jrFlag, MemRead,
+					MemtoReg, MuxWriteDataReg, nopFlag, RegWrite, jalFlag;
+
+	always @ (opCode) begin
+		case (opCode)
+			5'b00000: //load ok
+				begin
+					ALUOp = 4'b0001;
+					ALUSrc = 1;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 0;
+					MemtoReg = 0;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b00;
+				end
+			
+			5'b00001: //store ok
+				begin
+					ALUOp = 4'b0001;
+					ALUSrc = 1;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b01;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b00010: //li ok
+				begin
+					ALUOp = 4'b0000;
+					ALUSrc = 1;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b01;
+				end
+
+			5'b00011: //add ok
+				begin
+					ALUOp = 4'b0001;
+					ALUSrc = 0;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b00100: //addi ok
+				begin
+					ALUOp = 4'b0001;
+					ALUSrc = 1;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b00101: //sub ok
+				begin
+					ALUOp = 4'b0010;
+					ALUSrc = 0;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b00110: //subi ok
+				begin
+					ALUOp = 4'b0010;
+					ALUSrc = 1;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b00111: //slt ok
+				begin
+					ALUOp = 4'b0011;
+					ALUSrc = 0;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b01000: //hlt ok
+				begin
+					ALUOp = 4'bxxxx;	
+					ALUSrc = 1'bx;
+					BranchCtrl = 2'b00;
+					hltFlag = 1;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b01001: //nop ok
+				begin
+					ALUOp = 4'bxxxx;
+					ALUSrc = 1'bx;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 1;
+					RegWrite = 0;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b01010: //sl ok
+				begin
+					ALUOp = 4'b0111;
+					ALUSrc = 1;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b01011: //sr ok
+				begin
+					ALUOp = 4'b1000;
+					ALUSrc = 1;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b01100: //in ok
+				begin
+					ALUOp = 4'bxxxx;
+					ALUSrc = 1'bx;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 0;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b01101: //out ok
+				begin
+					ALUOp = 4'b0000; //move
+					ALUSrc = 0;
+               BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b10;
+					signExtendCtrl = 2'bxx;
+				end
+
+
+			5'b01110: //and ok
+				begin
+					ALUOp = 4'b0100;
+					ALUSrc = 0;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 0;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+
+			5'b01111: //or ok
+				begin
+					ALUOp = 4'b0101;
+					ALUSrc = 0;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 0;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+
+			5'b10000: //not ok
+				begin
+					ALUOp = 4'b1011;
+					ALUSrc = 1'bx;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+
+			5'b10001: //xor ok
+				begin
+					ALUOp = 4'b0110;
+					ALUSrc = 0;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 0;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'bxx;
+				end
+
+			5'b10010: //beq ok
+				begin
+					ALUOp = 4'b1001;
+					ALUSrc = 0;
+               BranchCtrl = 2'b01;
+					hltFlag = 0;
+					IOWrite = 0;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b01;
+					signExtendCtrl = 2'b00;
+				end
+
+			5'b10011: //bgez ok
+				begin
+					ALUOp = 4'b1010;
+					ALUSrc = 1'bx;
+               BranchCtrl = 2'b01;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b01;
+					signExtendCtrl = 2'b01;
+				end
+
+
+			5'b10100: //jump ok
+				begin
+					ALUOp = 4'bxxxx;
+					ALUSrc = 1'bx;
+					BranchCtrl = 2'b10;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b10;
+				end
+
+
+			5'b10101: //jal ok
+				begin
+					ALUOp = 4'b0000;
+					ALUSrc = 1;
+					BranchCtrl = 2'b10;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 1;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b00;
+					signExtendCtrl = 2'b01;
+				end
+
+
+			5'b10110: //jr
+				begin
+					ALUOp = 4'b0000;
+					ALUSrc = 0;
+					BranchCtrl = 2'bxx;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 1;
+					MemRead = 1'bx;
+					MemtoReg = 1'bx;
+					MuxWriteDataReg = 1'bx;
+					nopFlag = 0;
+					RegWrite = 0;
+					regAddressCtrl = 2'b10;
+					signExtendCtrl = 2'bxx;
+				end
+
+
+			5'b10111: //move
+				begin
+					ALUOp = 4'b0000;
+					ALUSrc = 0;
+					BranchCtrl = 2'b00;
+					hltFlag = 0;
+					IOWrite = 1'bx;
+					jalFlag = 0;
+					jrFlag = 0;
+					MemRead = 1'bx;
+					MemtoReg = 1;
+					MuxWriteDataReg = 0;
+					nopFlag = 0;
+					RegWrite = 1;
+					regAddressCtrl = 2'b11;
+					signExtendCtrl = 2'bxx;
+				end
+			endcase
+	end
+endmodule
+

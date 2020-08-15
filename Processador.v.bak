@@ -1,0 +1,71 @@
+/*Unidade Lógica e Aritmética do Processador*/
+
+module Processador (comando, entrada1, entrada2, saida, zeroflag);
+	//as entradas 1 e 2 são do tamanho de 32 bits
+	input [31:0] entrada1, entrada2;
+	//o comando possui um tamanho de 4 bits
+	input [3:0] comando;
+	
+	//a saida será do tamanho do dado da entrada, 32 bits
+	output reg [31:0] saida;
+	//zero flag, flag auxiliar
+	output reg zeroflag;
+	
+	always @ (comando or entrada1 or entrada2) 
+	begin
+		case(comando[3:0])
+			//operação aritmética de SOMA
+			4'b0000: saida = entrada1 + entrada2;
+			
+			//operação aritmética de SUBTRAÇÃO
+			4'b0001: saida = entrada1 - entrada2;
+			
+			//operação aritmética de MULTIPLICAÇÃO
+			4'b0010: saida = entrada1 * entrada2;
+			
+			//operação aritmética de DIVISÃO
+			4'b0011: saida = entrada1 / entrada2;
+			
+			//operação aritmética de RESTO DA DIVISÃO
+			4'b0100: saida = entrada1 % entrada2;
+			
+			//operação lógica E
+			4'b0101: saida = entrada1 & entrada2;
+			
+			//operação lógica OU
+			4'b0110: saida = entrada1 | entrada2;
+			
+			//operação lógica NÃO
+			4'b0111: saida = ~entrada1;
+			
+			//operação lógica OU EXCLUSIVO
+			4'b1000: saida = entrada1 ^ entrada2;
+			
+			//operação SHIFT RIGHT
+			4'b1001: saida = entrada1 >> entrada2;
+			
+			//operação SHIFT LEFT
+			4'b1010: saida = entrada1 << entrada2;
+			
+			//operação IGUAL
+			4'b1011: 
+				if (entrada1 == entrada2) saida = 1;
+				else saida = 0;
+			
+			//operação MAIOR QUE
+			4'b1100:
+				if (entrada1 > entrada2) saida = 1;
+				else saida = 0;
+			
+			//operação MENOR QUE
+			4'b1101:
+				if (entrada1 < entrada2) saida = 1;
+				else saida = 0;						
+		endcase
+		
+		//verificação se a saída é um numero igual a zero
+		if ($signed(saida) == $signed(0)) zeroflag = 1;
+		else zeroflag = 0;
+		
+	end
+endmodule

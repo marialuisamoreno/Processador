@@ -1,0 +1,37 @@
+/*Memória de Dados do Processador*/
+
+module MemoriaDeDados (Endereco, DadoEscrita, DadoLeitura, clock, FlagEscrita, Reset);
+	//Dados para escrita
+	input [31:0] DadoEscrita;
+	//Endereço da memória
+	input [9:0] Endereco;
+	//Sinal do clock
+	input clock;
+	//Flag para indicar escrita na memória de dados
+	input FlagEscrita;
+	//Sinal de reset dos dados
+	input Reset;
+	//Saida sobre o que está na memória
+	output [31:0] DadoLeitura;
+	
+	//Memória para salvar até 20 dados
+	reg [31:0] Memoria [19:0];
+	//Auxiliar para o laço de repetição
+	integer i;
+	
+	//Sempre na borda de subida do clock
+	always @ (posedge clock) 
+	begin
+		//Se o reset for acionado, a memória é ressetada
+		if(Reset == 1) 
+			for(i=0; i<=19; i=i+1)
+				Memoria[i][31:0] = 0;
+		
+		//Se eu quiser escrever algo na memória:
+		if(FlagEscrita == 1) Memoria[Endereco] = DadoEscrita;
+		
+	end
+	
+	//O dado de saida é acessado no endereço solicitado
+	assign DadoLeitura = Memoria[Endereco];
+endmodule

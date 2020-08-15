@@ -1,0 +1,32 @@
+/*Memória de Instruções do Processador*/
+
+module MemoriaDeInstrucao (Endereco, Instrucao, clock);
+	
+	//Endereco de 10 bits
+	input [9:0] Endereco;
+	//Variável do sinal do clock
+	input clock;
+	//Variável de controle de ciclo
+	integer Ciclo = 0;	
+	//Instrução de 32 bits
+	output [31:0] Instrucao;
+	//32 memórias RAMs de 64 bits
+	reg [31:0] RAM[63:0];
+
+	always @ (posedge clock) 
+	begin
+		//Irá executar as instruções em 1 ciclo de clock
+		if(Ciclo == 0)
+		begin
+			
+			/*Instruções*/
+			
+			Ciclo <= 1;
+			//Esta última mudança garante 1 só vez executada
+		end
+	end
+	
+	//Instrução
+	assign Instrucao = RAM[Endereco];
+
+endmodule

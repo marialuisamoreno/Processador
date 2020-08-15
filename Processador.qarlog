@@ -1,0 +1,45 @@
+Quartus Prime Archive log --	C:/Users/maria/Downloads/Processador/Processador.qarlog
+
+Archive:	C:/Users/maria/Downloads/Processador/Processador.qar
+Date:		Wed Jul 10 17:17:39 2019
+Quartus Prime		17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/maria/Downloads/Processador/BancoDeRegistradores.v
+C:/Users/maria/Downloads/Processador/ControleDeDesvios.v
+C:/Users/maria/Downloads/Processador/Conversor.v
+C:/Users/maria/Downloads/Processador/Display7Segmentos.v
+C:/Users/maria/Downloads/Processador/EntradaSaida.v
+C:/Users/maria/Downloads/Processador/ExtensorDeBits.v
+C:/Users/maria/Downloads/Processador/MemoriaDeDados.v
+C:/Users/maria/Downloads/Processador/MemoriaDeInstrucao.v
+C:/Users/maria/Downloads/Processador/ModosDeEnderecamento.v
+C:/Users/maria/Downloads/Processador/MultiplexadorBR.v
+C:/Users/maria/Downloads/Processador/MultiplexadorMD.v
+C:/Users/maria/Downloads/Processador/MultiplexadorULA.v
+C:/Users/maria/Downloads/Processador/Processador.qpf
+C:/Users/maria/Downloads/Processador/Processador.qsf
+C:/Users/maria/Downloads/Processador/Processador.v
+C:/Users/maria/Downloads/Processador/ProgramCounter.v
+C:/Users/maria/Downloads/Processador/UnidadeDeControle.v
+C:/Users/maria/Downloads/Processador/UnidadeLogicaAritmetica.v
+C:/Users/maria/Downloads/Processador/Waveform.vwf
+C:/Users/maria/Downloads/Processador/Waveform1.vwf
+C:/Users/maria/Downloads/Processador/Waveform2.vwf
+C:/Users/maria/Downloads/Processador/Waveform3.vwf
+C:/Users/maria/Downloads/Processador/Waveform4.vwf
+C:/Users/maria/Downloads/Processador/Waveform5.vwf
+C:/Users/maria/Downloads/Processador/Waveform6.vwf
+C:/Users/maria/Downloads/Processador/Waveform7.vwf
+C:/Users/maria/Downloads/Processador/Waveform8.vwf
+c:/intelfpga_lite/17.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 28 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Sun Nov 03 11:20:51 2019
+Source archive file:	C:/Users/maria/Downloads/UNIFESP/2019.1/Laboratório de AOC/Processador/Processador.qar
+Archive was extracted into	C:/Users/maria/Downloads/UNIFESP/2019.1/Laboratório de AOC/Processador/Processador_restored/
+		 - successfully.

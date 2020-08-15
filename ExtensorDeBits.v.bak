@@ -1,0 +1,34 @@
+/*Extensor de Bits do Processador*/
+
+module ExtensorDeBits (controle, tamanho14, tamanho23, saida);
+	//Instruções do tamanho de 14 bits
+	input [14:0] tamanho14;
+	//Instruções do tamanho de 23 bits
+	input [23:0] tamanho23;
+	//Flag para controle de qual extensão irá acontecer
+	input controle;
+	//Saída no tamanho de 32 bits
+	output reg [31:0] saida;
+	
+	always @(*) begin
+		case(controle)
+			//Se a extensão for para o dado de tamanho de 14 bits:
+			1'b0: 
+			begin
+				//A saida recebe o dado de 14 bits
+				saida = tamanho14;
+				//E o completa com zeros até ter o tamanho de 32 bits
+				if(tamanho14[14] == 1'b1) saida = {18'h0000, tamanho14};
+			end
+			//Se a extensão for para o dado de tamanho de 23 bits:
+			1'b1:
+			begin
+				//A saida recebe o dado de 23 bits
+				saida = tamanho23;
+				//E o completa com zeros até ter o tamanho de 32 bits
+				if(tamanho23[23]==1'b1) saida = {9'h0000, tamanho23};
+			end
+		endcase
+	end
+
+endmodule

@@ -1,0 +1,44 @@
+/*Unidade de Controle de Desvios do Processador*/
+
+module ControleDeDesvios (ALUOut, branchCtrl, jrFlag, PCIn, PCOut, immediate, zero, clock);
+
+	input [31:0] PCIn;
+	input [1:0] branchCtrl;
+	input clock, jrFlag, zero;
+	
+	input wire [31:0] ALUOut, immediate;
+	
+	output [31:0] PCOut;
+	
+	reg [31:0] PCOut;
+	
+	always @ (posedge clock) begin
+		
+		case(branchCtrl)
+			2'b00: //processo normal PC + 1
+				begin
+					PCOut <= PCIn + 1;
+				end
+	
+			2'b01: //desvio condicional
+				begin
+					if(zero)
+						PCOut <= PCIn + immediate;
+					else
+						PCOut <= PCIn + 1;
+				end
+			
+			2'b10: //desvio incondicional
+				begin
+					PCOut <= immediate;
+				end
+		
+		endcase
+
+		if(jrFlag == 1)
+			begin
+				PCOut <= ALUOut + 1;
+			end
+
+	end
+endmodule

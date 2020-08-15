@@ -1,0 +1,18 @@
+/*Multiplexador da ULA do Processador*/
+
+module MultiplexadorULA (comando, entrada1, entrada2, saida);
+
+	input [31:0] entrada1, entrada2;
+	input comando;
+	
+	output reg [31:0] saida;
+	
+	always @ (*) begin
+		case (comando)
+			1'b0:
+				saida = entrada1;
+			1'b1:
+				saida = entrada2;
+		endcase
+	end
+endmodule

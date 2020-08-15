@@ -1,0 +1,172 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2017  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+# Date created = 10:25:43  May 16, 2019
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Processador_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY Processador
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:25:43  MAY 16, 2019"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name VERILOG_FILE UnidadeLogicaAritmetica.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
+set_global_assignment -name VERILOG_FILE Processador.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform2.vwf
+set_global_assignment -name VERILOG_FILE BancoDeRegistradores.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform3.vwf
+set_global_assignment -name VERILOG_FILE MemoriaDeDados.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform4.vwf
+set_global_assignment -name VERILOG_FILE MemoriaDeInstrucao.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform5.vwf
+set_global_assignment -name VERILOG_FILE ProgramCounter.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform6.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform7.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform8.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform9.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform10.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform11.vwf
+set_global_assignment -name VERILOG_FILE ExtensorDeBits.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform12.vwf
+set_global_assignment -name VERILOG_FILE MultiplexadorULA.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name FITTER_EFFORT "FAST FIT"
+set_global_assignment -name VERILOG_FILE ControleDeDesvios.v
+set_global_assignment -name VERILOG_FILE MultiplexadorMD.v
+set_global_assignment -name VERILOG_FILE MultiplexadorBR.v
+set_global_assignment -name VERILOG_FILE ModosDeEnderecamento.v
+set_global_assignment -name VERILOG_FILE UnidadeDeControle.v
+set_global_assignment -name VERILOG_FILE EntradaSaida.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform13.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform14.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform15.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform16.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform17.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform18.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform19.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform20.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform21.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform22.vwf
+set_global_assignment -name VERILOG_FILE Conversor.v
+set_global_assignment -name VERILOG_FILE Display7Segmentos.v
+set_location_assignment PIN_Y23 -to entradaFPGA[0]
+set_location_assignment PIN_Y24 -to entradaFPGA[1]
+set_location_assignment PIN_AA22 -to entradaFPGA[2]
+set_location_assignment PIN_AA23 -to entradaFPGA[3]
+set_location_assignment PIN_AA24 -to entradaFPGA[4]
+set_location_assignment PIN_Y2 -to clkFPGA
+set_location_assignment PIN_AB28 -to Reset
+set_location_assignment PIN_G18 -to unidade[0]
+set_location_assignment PIN_F22 -to unidade[1]
+set_location_assignment PIN_E17 -to unidade[2]
+set_location_assignment PIN_L26 -to unidade[3]
+set_location_assignment PIN_L25 -to unidade[4]
+set_location_assignment PIN_J22 -to unidade[5]
+set_location_assignment PIN_H22 -to unidade[6]
+set_location_assignment PIN_M24 -to dezena[0]
+set_location_assignment PIN_Y22 -to dezena[1]
+set_location_assignment PIN_W21 -to dezena[2]
+set_location_assignment PIN_W22 -to dezena[3]
+set_location_assignment PIN_W25 -to dezena[4]
+set_location_assignment PIN_U23 -to dezena[5]
+set_location_assignment PIN_U24 -to dezena[6]
+set_location_assignment PIN_AA25 -to centena[0]
+set_location_assignment PIN_AA26 -to centena[1]
+set_location_assignment PIN_Y25 -to centena[2]
+set_location_assignment PIN_W26 -to centena[3]
+set_location_assignment PIN_Y26 -to centena[4]
+set_location_assignment PIN_W27 -to centena[5]
+set_location_assignment PIN_W28 -to centena[6]
+set_location_assignment PIN_V21 -to milhar[0]
+set_location_assignment PIN_U21 -to milhar[1]
+set_location_assignment PIN_AB20 -to milhar[2]
+set_location_assignment PIN_AA21 -to milhar[3]
+set_location_assignment PIN_AD24 -to milhar[4]
+set_location_assignment PIN_AF23 -to milhar[5]
+set_location_assignment PIN_Y19 -to milhar[6]
+set_location_assignment PIN_AB19 -to uniPC[0]
+set_location_assignment PIN_AA19 -to uniPC[1]
+set_location_assignment PIN_AG21 -to uniPC[2]
+set_location_assignment PIN_AH21 -to uniPC[3]
+set_location_assignment PIN_AE19 -to uniPC[4]
+set_location_assignment PIN_AF19 -to uniPC[5]
+set_location_assignment PIN_AE18 -to uniPC[6]
+set_location_assignment PIN_AD18 -to dezPC[0]
+set_location_assignment PIN_AC18 -to dezPC[1]
+set_location_assignment PIN_AB18 -to dezPC[2]
+set_location_assignment PIN_AH19 -to dezPC[3]
+set_location_assignment PIN_AG19 -to dezPC[4]
+set_location_assignment PIN_AF18 -to dezPC[5]
+set_location_assignment PIN_AH18 -to dezPC[6]
+set_location_assignment PIN_G19 -to clock
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "PASSIVE SERIAL"
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_location_assignment PIN_AA14 -to dezFPGA[6]
+set_location_assignment PIN_AG18 -to dezFPGA[5]
+set_location_assignment PIN_AF17 -to dezFPGA[4]
+set_location_assignment PIN_AH17 -to dezFPGA[3]
+set_location_assignment PIN_AG17 -to dezFPGA[2]
+set_location_assignment PIN_AE17 -to dezFPGA[1]
+set_location_assignment PIN_AD17 -to dezFPGA[0]
+set_location_assignment PIN_AC17 -to uniFPGA[6]
+set_location_assignment PIN_AA15 -to uniFPGA[5]
+set_location_assignment PIN_AB15 -to uniFPGA[4]
+set_location_assignment PIN_AB17 -to uniFPGA[3]
+set_location_assignment PIN_AA16 -to uniFPGA[2]
+set_location_assignment PIN_AB16 -to uniFPGA[1]
+set_location_assignment PIN_AA17 -to uniFPGA[0]
+set_global_assignment -name VECTOR_WAVEFORM_FILE output_files/Waveform.vwf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
